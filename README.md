@@ -10,11 +10,6 @@ An intuitive Expense Tracker application built using Flutter, designed to help u
 - Swipe to delete or edit entries.
 - Persistent storage using the Isar NoSQL database.
 - Multi-platform support: Android and iOS.
-  
-## Screenshots
-
-![Screenshot 1](link-to-screenshot-1)
-![Screenshot 2](link-to-screenshot-2)
 
 ## Getting Started
 
