@@ -184,23 +184,27 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 25,
                 ),
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: currentMonthExpenses.length,
-                    itemBuilder: (context, index) {
-                      int reversedIndex =
-                          currentMonthExpenses.length - 1 - index;
-                      Expense individualExpense =
-                          currentMonthExpenses[reversedIndex];
-                      return MyListTile(
-                        title: individualExpense.name,
-                        trailing: formatAmount(individualExpense.amount),
-                        onEditPressed: (context) =>
-                            openEditBox(individualExpense),
-                        onDeletePressed: (context) =>
-                            openDeleteBox(individualExpense),
-                      );
-                    },
-                  ),
+                  child: currentMonthExpenses.isEmpty
+                      ? const Center(
+                          child: Text('No Expenses',
+                              style: TextStyle(fontSize: 20)))
+                      : ListView.builder(
+                          itemCount: currentMonthExpenses.length,
+                          itemBuilder: (context, index) {
+                            int reversedIndex =
+                                currentMonthExpenses.length - 1 - index;
+                            Expense individualExpense =
+                                currentMonthExpenses[reversedIndex];
+                            return MyListTile(
+                              title: individualExpense.name,
+                              trailing: formatAmount(individualExpense.amount),
+                              onEditPressed: (context) =>
+                                  openEditBox(individualExpense),
+                              onDeletePressed: (context) =>
+                                  openDeleteBox(individualExpense),
+                            );
+                          },
+                        ),
                 )
               ],
             ),

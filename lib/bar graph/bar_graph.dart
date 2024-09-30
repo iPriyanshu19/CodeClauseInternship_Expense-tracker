@@ -58,6 +58,13 @@ class _MyBarGraphState extends State<MyBarGraph> {
     initializeBarData();
     double barWidth = 20;
     double spaceBetweenBars = 15;
+
+    // Check if the monthlySummary is empty
+    if (widget.monthlySummary.isEmpty) {
+      return const Center(
+          child: Text('No Data Available', style: TextStyle(fontSize: 20)));
+    }
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       controller: _scrollController,
@@ -82,9 +89,10 @@ class _MyBarGraphState extends State<MyBarGraph> {
                     AxisTitles(sideTitles: SideTitles(showTitles: false)),
                 bottomTitles: AxisTitles(
                   sideTitles: SideTitles(
-                      showTitles: true,
-                      getTitlesWidget: getBottomTitles,
-                      reservedSize: 24),
+                    showTitles: true,
+                    getTitlesWidget: getBottomTitles,
+                    reservedSize: 24,
+                  ),
                 ),
               ),
               barGroups: barData
