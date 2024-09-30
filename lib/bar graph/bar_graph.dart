@@ -91,7 +91,7 @@ class _MyBarGraphState extends State<MyBarGraph> {
                   sideTitles: SideTitles(
                     showTitles: true,
                     getTitlesWidget: getBottomTitles,
-                    reservedSize: 24,
+                    reservedSize: 28,
                   ),
                 ),
               ),
@@ -130,52 +130,32 @@ Widget getBottomTitles(double value, TitleMeta meta) {
     color: Colors.grey,
     fontSize: 14,
   );
-  String text;
-  switch (value.toInt() % 12) {
-    case 0:
-      text = 'J';
-      break;
-    case 1:
-      text = 'F';
-      break;
-    case 2:
-      text = 'M';
-      break;
-    case 3:
-      text = 'A';
-      break;
-    case 4:
-      text = 'M';
-      break;
-    case 5:
-      text = 'J';
-      break;
-    case 6:
-      text = 'J';
-      break;
-    case 7:
-      text = 'A';
-      break;
-    case 8:
-      text = 'S';
-      break;
-    case 9:
-      text = 'O';
-      break;
-    case 10:
-      text = 'N';
-      break;
-    case 11:
-      text = 'D';
-      break;
-    default:
-      text = '';
-      break;
-  }
+
+  final DateTime now = DateTime.now();
+  int currentMonth = now.month - 1;
+
+  const List<String> months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+  ];
+
+  int monthIndex = (currentMonth + value.toInt()) % 12;
+
   return SideTitleWidget(
-      child: Text(
-        text,
-        style: textstyle,
-      ),
-      axisSide: meta.axisSide);
+    axisSide: meta.axisSide,
+    child: Text(
+      months[monthIndex],
+      style: textstyle,
+    ),
+  );
 }
